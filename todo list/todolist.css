@@ -1,0 +1,297 @@
+:root {
+    --urgent-important: #d00000;
+    --not-urgent-important: #f77f00;
+    --not-important-urgent: #ffee32;
+    --not-important-not-urgent: #386641 ;
+
+
+    --main-button: #01497c;
+    --editButton: #52b788;
+    --background: #caf0f8;
+    --light-blue: #0096c7;
+
+    --light: hsl(190, 77%, 88%);
+    --dark: #03045e;
+    --danger: #c1121f;
+
+
+    --shadow: 0 1px 3px #48cae4;
+
+
+    --urgent-important-glow:  0 0 4px hsl(0, 100%, 50%) ;
+    --not-urgent-important-glow:  0 0 4px hsl(31, 100%, 60%);
+    --not-important-urgent-glow:  0 0 4px hsl(55, 100%, 80%);
+    --not-important-not-urgent-glow:  0 0 4px hsl(132, 29%, 42%);
+    --button-glow: 0 0 4px #0077b6;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Montserrat, sans-serif;
+}
+
+input:not([type="radio"]):not([type="checkbox"]), button {
+    appearance: none;
+    border: none;
+    outline: none;
+    background: none;
+    cursor: initial;
+}
+
+body {
+    background-color: var(--light);
+    color: var(--dark);
+}
+
+section{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+h3 {
+    color: var(--dark);
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+}
+
+h4 {
+    color: var(--light-blue);
+    font-size: 0.875rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.greeting .title{
+    display: flex;
+}
+
+.greeting .title input{
+    margin-left: 0.5rem;
+    flex: 1 1 0%;
+    min-width: 0;
+}
+
+.greeting .title,
+.greeting .title input{
+    color: var(--dark);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.create-todo input[type="text"] {
+    display: block;
+    width: 100%;
+    font-size: 1.125rem;
+    padding: 1rem 1.5rem;
+    color: var(--dark);
+    background-color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 1.5rem;
+}
+
+
+.create-todo .options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+
+.create-todo .options label{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    text-align: center;
+    white-space: nowrap;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    display: none;
+}
+
+.bubble {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--urgent-important);
+    box-shadow: var(--urgent-important-glow);
+}
+
+.bubble.not-urgent-important{
+    border-color: var(--not-urgent-important);
+    box-shadow: var(--not-urgent-important-glow);
+}
+.bubble.not-important-urgent{
+    border-color: var(--not-important-urgent);
+    box-shadow: var(--not-important-urgent-glow);
+}
+.bubble.not-important-not-urgent{
+    border-color: var(--not-important-not-urgent);
+    box-shadow: var(--not-important-not-urgent-glow);
+}
+
+
+.bubble::after {
+    content: "";
+    display: block;
+    opacity: 0;
+    width: 0px;
+    height: 0px;
+    background-color: var(--urgent-important);
+    box-shadow: var(--urgent-important-glow);
+    border-radius: 50%;
+    transition: 0.2s ease-in-out;
+}
+
+.bubble.not-urgent-important::after {
+    background-color: var(--not-urgent-important);
+    box-shadow: var(--not-urgent-important-glow);
+}
+.bubble.not-important-urgent::after {
+    background-color: var(--not-important-urgent);
+    box-shadow: var(--not-important-urgent-glow);
+}
+.bubble.not-important-not-urgent::after {
+    background-color: var(--not-important-not-urgent);
+    box-shadow: var(--not-important-not-urgent-glow);
+}
+
+input:checked ~ .bubble::after {
+    width: 10px;
+    height: 10px;
+    opacity: 1;
+}
+.create-todo .options label div {
+    color: var(--dark);
+    font-size: 1.125rem;
+    margin-top: 1rem;
+}
+
+.create-todo input[type="submit"] {
+    display: block;
+    width: 100%;
+    font-size: 1.125rem;
+    padding: 1rem 1.5rem;
+    color: #fff;
+    background-color: var(--main-button);
+    border-radius: 0.5rem;
+    box-shadow: var(--button-glow);
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    color: var(--light-blue);
+    
+    /* border-bottom: 1px solid var(--dark); */
+}
+.filters span.active{ 
+   color: var(--main-button);
+   border-bottom: 1px solid var(--dark);
+}
+.filters span{
+    cursor: pointer;
+    margin: 0 1rem;
+    padding-bottom: .5rem;
+    font-size: 16px;
+    /* transition: 10s ease-in-out; */
+}
+.controls .clearAllBtn{
+    outline: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: .5rem;
+    padding: .5rem 1rem;
+    background: var(--main-button);
+}
+
+
+
+
+.create-todo input[type="submit"]:hover {
+    opacity: 0.85;
+}
+
+.todo-list .list {
+    margin: 1rem 0;
+}
+
+.todo-list .todo-item{
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 1rem;
+}
+
+.todo-item label {
+    display: block;
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+.todo-item .todo-content {
+    flex: 1 1 0%;
+}
+
+.todo-item .todo-content input{
+    color: var(--dark);
+    font-size: 1.125rem;
+}
+.todo-item .actions {
+    display: flex;
+    align-items: center;
+}
+
+.todo-item .actions button{
+    display: block;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.todo-item .actions button:hover{
+    opacity: .75;
+}
+
+.todo-item .actions .edit {
+    margin-right: 0.5rem;
+    background-color: var(--editButton);
+}
+
+.todo-item .actions .delete {
+    margin-right: 0.5rem;
+    background-color: var(--danger);
+}
+
+.todo-item.done .todo-content input{
+    text-decoration: line-through;
+    color: var(--light-blue);
+}
+
